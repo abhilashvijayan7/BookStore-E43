@@ -4,11 +4,6 @@ import { Book } from "../models/bookModel.js";
 // saving book to database
 export const createBook = async (req, res) => {
   try {
-    if (!req.body.title || !req.body.author || !req.body.publishYear) {
-      res.status(400).send({
-        message: "fill all required fields : title , author , publishYear",
-      });
-    } else {
       const newBook = {
         title: req.body.title,
         author: req.body.author,
@@ -16,7 +11,7 @@ export const createBook = async (req, res) => {
       };
       const book = await Book.create(newBook);
       return res.status(201).send(book);
-    }
+   
   } catch (error) {
     console.log(error.message);
     res.status(500).send({ message: error.message });
